@@ -1,0 +1,59 @@
+
+;; ----- smex-history -----
+(
+ comment-or-uncomment-region
+ describe-key
+ paredit-mode
+ tabify
+ rgrep
+ buffer-menu
+ package-list-packages
+)
+
+;; ----- smex-data -----
+(
+ (package-list-packages . 19)
+ (clojure-jack-in . 209)
+ (package-install . 4)
+ (eval-buffer . 2)
+ (other-window . 2)
+ (transient-mark-mode . 4)
+ (color-theme-sanityinc-solarized-dark . 2)
+ (color-theme-sanityinc-solarized-light . 1)
+ (comment-or-uncomment-region . 125)
+ (cua-selection-mode . 1)
+ (kill-region . 1)
+ (delete-region . 1)
+ (paredit-mode . 22)
+ (emacs-init-time . 1)
+ (eval-region . 1)
+ (scroll-bar-mode . 3)
+ (auto-complete-mode . 2)
+ (eldoc-mode . 6)
+ (turn-on-eldoc-mode . 1)
+ (revert-buffer . 2)
+ (eval-expression . 2)
+ (describe-font . 2)
+ (grep . 3)
+ (rgrep . 164)
+ (magit-status . 15)
+ (spam-report-agentize . 1)
+ (redo . 12)
+ (clojure-mode . 1)
+ (clojure-test-mode . 28)
+ (regexp-builder . 2)
+ (octave-mode . 13)
+ (dired-flag-files-regexp . 1)
+ (switch-to-buffer . 1)
+ (ebrowse-tags-query-replace . 1)
+ (eshell . 1)
+ (kill-buffer . 1)
+ (byte-compile-file . 4)
+ (slime-repl-set-package . 1)
+ (doc-view-mode . 2)
+ (slime-macroexpand-1 . 4)
+ (describe-key . 3)
+ (buffer-menu . 2)
+ (tabify . 1)
+ (paredit-doublequote . 1)
+)
