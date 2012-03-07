@@ -122,10 +122,10 @@
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
 ;; HTML tab mode
-(add-hook 'sgml-mode-hook
-          (lambda()
-            (setq sgml-basic-offset 2)
-            (setq indent-tabs-mode t)))
+;; (add-hook 'sgml-mode-hook
+;;           (lambda()
+;;             (setq sgml-basic-offset 2)
+;;             (setq indent-tabs-mode t)))
 
 ;; js2 mode
 (add-to-list 'load-path "/Users/Adam/.emacs.d/elpa/js2")
@@ -134,3 +134,6 @@
 
 ;; eldoc mode
 (add-hook 'clojure-mode-hook 'eldoc-mode)
+
+;; nXHTML mode
+(load "/Users/Adam/.emacs.d/nxhtml/autostart")

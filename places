@@ -1,5 +1,6 @@
 ;;; -*- coding: utf-8 -*-
-(("/Users/Adam/.emacs.d/init.el" . 2561)
+(("/Users/Adam/.emacs.d/init.el" . 4537)
+ ("/Users/Adam/workspace/clojure/stream-science/src/social/db/core.clj" . 529)
  ("/Users/Adam/workspace/clojure/stream-science/src/social/interfaces/rest/commands/twitter.clj" . 3281)
  ("/Users/Adam/workspace/clojure/stream-science/src/social/interfaces/rest/commands/util.clj" . 937)
  ("/Users/Adam/workspace/clojure/stream-science/src/social/streams/twitter/user.clj" . 22112)

@@ -1,18 +1,18 @@
 
 ;; ----- smex-history -----
 (
- comment-or-uncomment-region
+ copy-to-buffer
  describe-key
+ zencoding-expand-line
+ comment-or-uncomment-region
+ package-list-packages
  paredit-mode
  tabify
- rgrep
- buffer-menu
- package-list-packages
 )
 
 ;; ----- smex-data -----
 (
- (package-list-packages . 19)
+ (package-list-packages . 20)
  (clojure-jack-in . 209)
  (package-install . 4)
  (eval-buffer . 2)
@@ -20,7 +20,7 @@
  (transient-mark-mode . 4)
  (color-theme-sanityinc-solarized-dark . 2)
  (color-theme-sanityinc-solarized-light . 1)
- (comment-or-uncomment-region . 125)
+ (comment-or-uncomment-region . 129)
  (cua-selection-mode . 1)
  (kill-region . 1)
  (delete-region . 1)
@@ -52,8 +52,10 @@
  (slime-repl-set-package . 1)
  (doc-view-mode . 2)
  (slime-macroexpand-1 . 4)
- (describe-key . 3)
+ (describe-key . 5)
  (buffer-menu . 2)
  (tabify . 1)
  (paredit-doublequote . 1)
+ (zencoding-expand-line . 2)
+ (copy-to-buffer . 1)
 )
