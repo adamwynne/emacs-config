@@ -52,12 +52,6 @@
 ;; lein path
 (setenv "PATH" (concat (getenv "PATH") ":" "/Users/Adam/bin"))
 
-;; durendal
-;;(add-hook 'clojure-mode-hook 'durendal-enable-auto-compile)
-(add-hook 'slime-repl-mode-hook 'durendal-slime-repl-paredit)
-(add-hook 'sldb-mode-hook 'durendal-dim-sldb-font-lock)
-;;(add-hook 'slime-compilation-finished-hook 'durendal-hide-successful-compile)
-
 ;; Save the desktop when the files are autosaved
 (desktop-save-mode t)
 (defun my-desktop-save ()
@@ -83,22 +77,6 @@
 (setq delete-old-versions t)
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
 
-;; Yasnippet
-(add-to-list 'load-path
-              "/Users/Adam/.emacs.d/elpa/yasnippet-0.6.1")
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/elpa/yasnippet-0.6.1/snippets")
-
-;; Auto complete
-(require 'ac-slime)
-(add-hook 'slime-mode-hook 'set-up-slime-ac)
-(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'slime-repl-mode))
-(require 'auto-complete)
-(add-hook 'clojure-mode-hook 'auto-complete-mode)
-
 ;; Change the colour of the hi-line
 (eval-after-load "hi-lock"
   '(set-face-background 'hl-line "#3c3c3c"))
@@ -113,13 +91,13 @@
 
 ;; Octave mode
 (autoload 'octave-mode "octave-mod" nil t)
-(setq auto-mode-alist
-      (cons '("\\.m$" . octave-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
 ;; Zencoding
 (add-to-list 'load-path "/Users/Adam/.emacs.d/zencoding")
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
+(define-key global-map "\C-\M-h" 'zencoding-expand-line)
 
 ;; HTML tab mode
 ;; (add-hook 'sgml-mode-hook
@@ -127,13 +105,61 @@
 ;;             (setq sgml-basic-offset 2)
 ;;             (setq indent-tabs-mode t)))
 
+;; nXHTML mode
+(load "/Users/Adam/.emacs.d/nxhtml/autostart")
+(add-to-list 'auto-mode-alist '("\\.php$" . nxhtml-mode))
+(add-to-list 'auto-mode-alist '("\\.html$" . nxhtml-mode))
+
 ;; js2 mode
-(add-to-list 'load-path "/Users/Adam/.emacs.d/elpa/js2")
-(autoload 'js2-mode "js2" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
 
 ;; eldoc mode
 (add-hook 'clojure-mode-hook 'eldoc-mode)
 
-;; nXHTML mode
-(load "/Users/Adam/.emacs.d/nxhtml/autostart")
+;; Show the column number
+(column-number-mode 1)
+
+;; Adjust the divider bar
+(defun xor (b1 b2)
+  "Exclusive or of its two arguments."
+  (or (and b1 b2)
+      (and (not b1) (not b2))))
+
+(defun move-border-left-or-right (arg dir)
+  "General function covering move-border-left and move-border-right. If DIR is
+     t, then move left, otherwise move right."
+  (interactive)
+  (if (null arg) (setq arg 5))
+  (let ((left-edge (nth 0 (window-edges))))
+    (if (xor (= left-edge 0) dir)
+        (shrink-window arg t)
+      (enlarge-window arg t))))
+
+(defun move-border-left (arg)
+  "If this is a window with its right edge being the edge of the screen, enlarge
+     the window horizontally. If this is a window with its left edge being the edge
+     of the screen, shrink the window horizontally. Otherwise, default to enlarging
+     horizontally.
+     
+     Enlarge/Shrink by ARG columns, or 5 if arg is nil."
+  (interactive "P")
+  (move-border-left-or-right arg t))
+
+(defun move-border-right (arg)
+  "If this is a window with its right edge being the edge of the screen, shrink
+     the window horizontally. If this is a window with its left edge being the edge
+     of the screen, enlarge the window horizontally. Otherwise, default to shrinking
+     horizontally.
+     
+     Enlarge/Shrink by ARG columns, or 5 if arg is nil."
+  (interactive "P")
+  (move-border-left-or-right arg nil))
+
+(global-set-key (kbd "M-[") 'move-border-left)
+(global-set-key (kbd "M-]") 'move-border-right)
+
+;; Load from OS into the same frame
+(setq ns-pop-up-frames nil)
+
+(add-hook 'nrepl-mode-hook 'paredit-mode)
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
